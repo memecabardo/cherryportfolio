@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Cabardo | Creative Developer & Designer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme">
+    <!-- Floating Background Orbs -->
+    <div class="bg-orb-container">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+    </div>
+
+    <!-- Custom Cursor Glow -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Header / Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-dot"></span> Cherry<span class="logo-accent">.</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link active" data-section="hero">Home</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i data-lucide="sun" class="sun-icon"></i>
+                    <i data-lucide="moon" class="moon-icon"></i>
+                </button>
+                <a href="#contact" class="cta-nav">Let's Talk</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Navigation Menu">
+                <i data-lucide="menu" class="open-icon"></i>
+                <i data-lucide="x" class="close-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Menu -->
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#hero" class="mobile-link active" data-section="hero">Home</a>
+        <a href="#about" class="mobile-link" data-section="about">About</a>
+        <a href="#skills" class="mobile-link" data-section="skills">Skills</a>
+        <a href="#projects" class="mobile-link" data-section="projects">Projects</a>
+        <a href="#contact" class="mobile-link" data-section="contact">Contact</a>
+        <a href="#contact" class="mobile-cta">Let's Talk</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section section-padding">
+            <div class="hero-container container">
+                <div class="hero-content">
+                    <div class="badge">
+                        <span class="badge-dot"></span> Available for Freelance & Full-time
+                    </div>
+                    <h1 class="hero-title">
+                        Crafting Digital <br>
+                        <span class="text-gradient">Experiences</span> With Passion
+                    </h1>
+                    <p class="hero-subtitle">
+                        Hi, I'm Cherry Cabardo, a Creative Software Engineer and UI/UX Designer specialized in building gorgeous, functional web systems that stand out.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>Explore Work</span>
+                            <i data-lucide="arrow-right" class="btn-icon"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Get in Touch</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3 class="stat-number">3+</h3>
+                            <p class="stat-label">Years Experience</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="stat-number">15+</h3>
+                            <p class="stat-label">Projects Completed</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="stat-number">99%</h3>
+                            <p class="stat-label">Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-wrapper">
+                        <div class="avatar-ring ring-1"></div>
+                        <div class="avatar-ring ring-2"></div>
+                        <div class="avatar-container">
+                            <img src="assets/avatar.png" alt="Cherry Cabardo Avatar" class="avatar-image">
+                        </div>
+                        <!-- Decorative floating badges -->
+                        <div class="floating-badge fb-1">
+                            <i data-lucide="code" class="fb-icon"></i>
+                            <span>Developer</span>
+                        </div>
+                        <div class="floating-badge fb-2">
+                            <i data-lucide="palette" class="fb-icon"></i>
+                            <span>Designer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down-indicator">
+                <a href="#about" aria-label="Scroll Down">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <span class="scroll-text">Scroll Down</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">About Me</span>
+                    <h2 class="section-title">My Journey & Expertise</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-text-container">
+                        <h3 class="about-lead">Based in the Philippines, working globally to deliver interactive, modern digital products.</h3>
+                        <p class="about-paragraph">
+                            I am a developer who loves the intersection of clean logic and gorgeous aesthetics. My workflow combines software architecture with careful visual detail. Whether designing UI prototypes or coding scalable back-ends, my focus is always on producing responsive, responsive, and robust websites.
+                        </p>
+                        <p class="about-paragraph">
+                            With hands-on experience in full-stack web architectures (PHP/XAMPP, MySQL, JavaScript, Node.js) and modern client libraries, I craft interfaces that capture attention and perform flawlessly.
+                        </p>
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <div class="feature-icon-wrapper">
+                                    <i data-lucide="zap" class="feature-icon"></i>
+                                </div>
+                                <div class="feature-details">
+                                    <h4>Fast & Responsive</h4>
+                                    <p>Performance optimized layouts that scale to all device screens.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon-wrapper">
+                                    <i data-lucide="shield" class="feature-icon"></i>
+                                </div>
+                                <div class="feature-details">
+                                    <h4>Clean Standards</h4>
+                                    <p>Maintainable codebase built on standards-compliant design structures.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-interactive-card">
+                        <div class="glass-card tilt-card" id="about-card">
+                            <div class="card-glow"></div>
+                            <div class="card-content">
+                                <div class="card-header-icon">
+                                    <i data-lucide="terminal" class="terminal-icon"></i>
+                                </div>
+                                <div class="terminal-mock">
+                                    <p class="terminal-line"><span class="t-accent">cherry$</span> cat intro.txt</p>
+                                    <p class="terminal-response">Hello! I build web systems using cutting-edge technologies.</p>
+                                    <p class="terminal-line"><span class="t-accent">cherry$</span> npm run skills</p>
+                                    <p class="terminal-response">Loading expertise matrix...</p>
+                                    <div class="terminal-progress">
+                                        <div class="t-bar" style="width: 90%;">Coding 90%</div>
+                                        <div class="t-bar" style="width: 85%;">Designing 85%</div>
+                                        <div class="t-bar" style="width: 80%;">Deploying 80%</div>
+                                    </div>
+                                    <p class="terminal-line"><span class="t-accent">cherry$</span> <span class="blink-cursor">_</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section section-padding">
+            <div class="container">
+                <div class="section-header center-align">
+                    <span class="section-tag">Skills Matrix</span>
+                    <h2 class="section-title">My Tech Ecosystem</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skills-category">
+                        <h3 class="category-title"><i data-lucide="code-2" class="title-icon"></i> Frontend Development</h3>
+                        <div class="skills-list">
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">HTML5 / CSS3 / ES6</span>
+                                    <span class="skill-percentage">95%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">JavaScript & TypeScript</span>
+                                    <span class="skill-percentage">90%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">React / Vue / Vite</span>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h3 class="category-title"><i data-lucide="server" class="title-icon"></i> Backend & Database</h3>
+                        <div class="skills-list">
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">PHP & XAMPP Ecosystem</span>
+                                    <span class="skill-percentage">88%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 88%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">Node.js & Express</span>
+                                    <span class="skill-percentage">80%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">SQL (MySQL / PostgreSQL)</span>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h3 class="category-title"><i data-lucide="layers" class="title-icon"></i> Design & DevOps</h3>
+                        <div class="skills-list">
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">Figma & UI/UX Design</span>
+                                    <span class="skill-percentage">90%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">Git & Version Control</span>
+                                    <span class="skill-percentage">92%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 92%;"></div>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-info">
+                                    <span class="skill-name">Web APIs & Integrations</span>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                                <div class="skill-track">
+                                    <div class="skill-fill" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Portfolio</span>
+                    <h2 class="section-title">Featured Creations</h2>
+                </div>
+                <div class="projects-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="dev">Development</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                </div>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card" data-category="dev">
+                        <div class="project-image-container">
+                            <img src="assets/project1.png" alt="Apex Financial Dashboard" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link-icon" aria-label="View Project Code"><i data-lucide="github"></i></a>
+                                    <a href="#" class="project-link-icon" aria-label="Live Demo"><i data-lucide="external-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span class="project-tag-pill">React</span>
+                                <span class="project-tag-pill">Node.js</span>
+                                <span class="project-tag-pill">Chart.js</span>
+                            </div>
+                            <h3 class="project-card-title">Apex Financial Analytics</h3>
+                            <p class="project-card-desc">
+                                A premium analytical dashboard featuring real-time market visualization, wallet tracking, and automated forecasting algorithms.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card" data-category="design">
+                        <div class="project-image-container">
+                            <img src="assets/project2.png" alt="Creata Studio AI" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link-icon" aria-label="View Design File"><i data-lucide="figma"></i></a>
+                                    <a href="#" class="project-link-icon" aria-label="Live Demo"><i data-lucide="external-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span class="project-tag-pill">UI/UX</span>
+                                <span class="project-tag-pill">Figma</span>
+                                <span class="project-tag-pill">AI Engine</span>
+                            </div>
+                            <h3 class="project-card-title">Creata Studio AI</h3>
+                            <p class="project-card-desc">
+                                An intelligent vector workspace UI. Built using glassmorphic panels, dynamic workspaces, and seamless design asset management.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info-container">
+                        <span class="section-tag">Let's Connect</span>
+                        <h2 class="section-title">Ready to work <br>together?</h2>
+                        <p class="contact-intro">
+                            Have an exciting project idea or want to discuss full-time possibilities? Reach out via the form, or connect through social links.
+                        </p>
+                        <div class="contact-details">
+                            <div class="details-item">
+                                <div class="details-icon-wrapper">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div class="details-text">
+                                    <span>Email Me</span>
+                                    <a href="mailto:cherry@example.com">cherry@example.com</a>
+                                </div>
+                            </div>
+                            <div class="details-item">
+                                <div class="details-icon-wrapper">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div class="details-text">
+                                    <span>Location</span>
+                                    <p>Philippines, UTC+8</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="glass-card contact-form" onsubmit="event.preventDefault();">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" required placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" required placeholder="john@example.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" required placeholder="Project Inquiry">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" required rows="5" placeholder="Let's build something epic..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+                                <span>Send Message</span>
+                                <i data-lucide="send" class="btn-icon"></i>
+                            </button>
+                            <div class="form-success-msg" id="form-success">
+                                <i data-lucide="check-circle" class="success-icon"></i>
+                                <span>Message sent successfully! I'll get back to you soon.</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <a href="#" class="logo">
+                <span class="logo-dot"></span> Cherry<span class="logo-accent">.</span>
+            </a>
+            <p class="footer-copy">&copy; 2026 Cherry Cabardo. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/memecabardo" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i data-lucide="github"></i></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>

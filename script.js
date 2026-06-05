@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursorGlow();
     initMobileMenu();
     initScrollSpy();
-    initTiltCard();
-    initProjectFilter();
+    initExpertiseAccordion();
     initContactForm();
 });
 
@@ -25,23 +24,24 @@ function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-    } else {
-        body.classList.add('dark-theme');
+    // Default to light-theme matching the user's reference image
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+    } else {
+        body.classList.add('light-theme');
+        body.classList.remove('dark-theme');
     }
     
     themeToggleBtn.addEventListener('click', () => {
-        if (body.classList.contains('dark-theme')) {
-            body.classList.remove('dark-theme');
-            body.classList.add('light-theme');
-            localStorage.setItem('theme', 'light');
-        } else {
+        if (body.classList.contains('light-theme')) {
             body.classList.remove('light-theme');
             body.classList.add('dark-theme');
             localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-theme');
+            body.classList.add('light-theme');
+            localStorage.setItem('theme', 'light');
         }
     });
 }
@@ -61,7 +61,7 @@ function initHeaderScroll() {
     };
     
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Trigger once on load
+    handleScroll();
 }
 
 /* ==========================================================================
@@ -71,7 +71,6 @@ function initCursorGlow() {
     const glow = document.getElementById('cursor-glow');
     if (!glow) return;
     
-    // Check if device supports hover/mouse interactions
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouchDevice) {
         glow.style.display = 'none';
@@ -82,7 +81,7 @@ function initCursorGlow() {
     let mouseY = 0;
     let glowX = 0;
     let glowY = 0;
-    const speed = 0.1; // Easing speed
+    const speed = 0.08;
     
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -94,7 +93,6 @@ function initCursorGlow() {
         glow.style.opacity = '0';
     });
     
-    // Animation loop for smooth trailing effect
     function animate() {
         const dx = mouseX - glowX;
         const dy = mouseY - glowY;
@@ -118,7 +116,7 @@ function initMobileMenu() {
     const mobileNav = document.getElementById('mobile-nav');
     const openIcon = toggleBtn.querySelector('.open-icon');
     const closeIcon = toggleBtn.querySelector('.close-icon');
-    const mobileLinks = document.querySelectorAll('.mobile-link, .mobile-cta');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
     
     const toggleMenu = () => {
         const isOpen = mobileNav.classList.toggle('open');
@@ -126,7 +124,7 @@ function initMobileMenu() {
         if (isOpen) {
             openIcon.style.display = 'none';
             closeIcon.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Disable page scroll when menu is open
+            document.body.style.overflow = 'hidden';
         } else {
             openIcon.style.display = 'block';
             closeIcon.style.display = 'none';
@@ -136,7 +134,6 @@ function initMobileMenu() {
     
     toggleBtn.addEventListener('click', toggleMenu);
     
-    // Close mobile menu on clicking links
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (mobileNav.classList.contains('open')) {
@@ -156,7 +153,7 @@ function initScrollSpy() {
     
     const options = {
         root: null,
-        rootMargin: '-30% 0px -60% 0px', // Trigger when section occupies the active view zone
+        rootMargin: '-30% 0px -50% 0px',
         threshold: 0
     };
     
@@ -165,7 +162,6 @@ function initScrollSpy() {
             if (entry.isIntersecting) {
                 const sectionId = entry.target.getAttribute('id');
                 
-                // Update Desktop Links
                 navLinks.forEach(link => {
                     if (link.getAttribute('data-section') === sectionId) {
                         link.classList.add('active');
@@ -174,7 +170,6 @@ function initScrollSpy() {
                     }
                 });
                 
-                // Update Mobile Links
                 mobileLinks.forEach(link => {
                     if (link.getAttribute('data-section') === sectionId) {
                         link.classList.add('active');
@@ -192,88 +187,41 @@ function initScrollSpy() {
 }
 
 /* ==========================================================================
-   Interactive 3D Card Tilt Effect
+   Expertise Interactive Accordion List
    ========================================================================== */
-function initTiltCard() {
-    const card = document.getElementById('about-card');
-    if (!card) return;
+function initExpertiseAccordion() {
+    const expertiseRows = document.querySelectorAll('.expertise-row');
     
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return; // Disable on mobile/touch screens
+    // Auto-expand the first item as a showcase default
+    if (expertiseRows.length > 0) {
+        expertiseRows[0].classList.add('expanded');
+    }
     
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left; // Mouse position inside card
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        // Calculate tilt angles (max 15 degrees)
-        const rotateX = ((centerY - y) / centerY) * 12;
-        const rotateY = ((x - centerX) / centerX) * 12;
-        
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        
-        // Dynamic Glow following mouse
-        const glow = card.querySelector('.card-glow');
-        if (glow) {
-            const pctX = (x / rect.width) * 100;
-            const pctY = (y / rect.height) * 100;
-            glow.style.background = `radial-gradient(circle at ${pctX}% ${pctY}%, rgba(236, 72, 153, 0.18) 0%, rgba(0,0,0,0) 80%)`;
-        }
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        // Reset transform and glow smoothly
-        card.style.transform = 'rotateX(0) rotateY(0)';
-        const glow = card.querySelector('.card-glow');
-        if (glow) {
-            glow.style.background = `radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15) 0%, rgba(0,0,0,0) 80%)`;
-        }
-    });
-}
-
-/* ==========================================================================
-   Project Categorization Filter
-   ========================================================================== */
-function initProjectFilter() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active status from sibling buttons
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    expertiseRows.forEach(row => {
+        row.addEventListener('click', () => {
+            const isAlreadyExpanded = row.classList.contains('expanded');
             
-            const filterValue = btn.getAttribute('data-filter');
+            // Close all items
+            expertiseRows.forEach(r => r.classList.remove('expanded'));
             
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                
-                if (filterValue === 'all' || category === filterValue) {
-                    card.style.display = 'flex';
-                    // Trigger fade-in animation
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 10);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    // Delay display: none to allow fade-out transitions
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 400);
-                }
-            });
+            // Toggle clicked item
+            if (!isAlreadyExpanded) {
+                row.classList.add('expanded');
+            }
+        });
+        
+        // Keyboard accessibility support
+        row.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                row.click();
+            }
         });
     });
 }
 
 /* ==========================================================================
-   Contact Form Handler (Interactive Submissions)
+   Contact Form Handler (Mock Submission)
    ========================================================================== */
 function initContactForm() {
     const form = document.getElementById('contact-form');
@@ -285,40 +233,36 @@ function initContactForm() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Mock Form Submission loading animation
         const origText = submitBtn.innerHTML;
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>Sending...</span> <div class="spinner"></div>`;
+        submitBtn.innerHTML = `<span>SENDING...</span> <div class="spinner-editorial"></div>`;
         
-        // Custom styling for spinner
-        const spinner = submitBtn.querySelector('.spinner');
+        // Custom styling for editorial form spinner
+        const spinner = submitBtn.querySelector('.spinner-editorial');
         if (spinner) {
-            spinner.style.width = '18px';
-            spinner.style.height = '18px';
-            spinner.style.border = '2px solid rgba(255, 255, 255, 0.3)';
-            spinner.style.borderTopColor = '#fff';
+            spinner.style.width = '16px';
+            spinner.style.height = '16px';
+            spinner.style.border = '2px solid rgba(255, 255, 255, 0.2)';
+            spinner.style.borderTopColor = '#ffffff';
             spinner.style.borderRadius = '50%';
-            spinner.style.animation = 'spin 0.8s linear infinite';
+            spinner.style.animation = 'spin 0.7s linear infinite';
             
-            // Inject keyframe style if not already existing
-            if (!document.getElementById('spinner-style')) {
+            if (!document.getElementById('spinner-style-editorial')) {
                 const style = document.createElement('style');
-                style.id = 'spinner-style';
+                style.id = 'spinner-style-editorial';
                 style.innerHTML = `@keyframes spin { to { transform: rotate(360deg); } }`;
                 document.head.appendChild(style);
             }
         }
         
         setTimeout(() => {
-            // Restore button
             submitBtn.style.display = 'none';
             successMsg.style.display = 'flex';
             
-            // Clear inputs
             form.querySelectorAll('input, textarea').forEach(input => {
                 input.value = '';
                 input.disabled = true;
             });
-        }, 1800);
+        }, 1600);
     });
 }

@@ -752,18 +752,36 @@ body.light-theme .moon-icon { display: none; }
 .project-multi-img:hover .project-img:first-child { opacity: 0; }
 .project-multi-img:hover .project-img-back { opacity: 1; }
 
-/* Video container */
-.project-video-container {
+/* Video thumbnail card */
+.project-video-thumb {
     width: 100%;
-    background: #000;
-    border-radius: var(--radius) var(--radius) 0 0;
-    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, var(--vid-color-a), var(--vid-color-b));
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
 }
-.project-video {
+.project-video-thumb:hover { filter: brightness(1.1); }
+
+.vid-play-btn {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.project-video-thumb:hover .vid-play-btn { transform: scale(1.1); }
+.vid-play-btn i { width: 26px; height: 26px; color: #111; margin-left: 3px; }
+
+/* Video lightbox */
+.video-lightbox-content { max-width: 920px; }
+.lightbox-video {
     width: 100%;
     display: block;
-    max-height: 260px;
-    object-fit: cover;
+    background: #000;
+    max-height: 72vh;
 }
 .project-img {
     width: 100%; height: 100%;

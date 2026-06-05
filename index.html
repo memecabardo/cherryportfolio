@@ -357,11 +357,9 @@
 
                     <!-- Women's Education Video -->
                     <div class="project-card" data-category="video">
-                        <div class="project-video-container">
-                            <video class="project-video" controls preload="metadata">
-                                <source src="assets/GEELECT.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                        <div class="project-video-thumb" style="--vid-color-a: #a78bfa; --vid-color-b: #60a5fa;"
+                            data-video="assets/GEELECT.mp4" data-title="Women's Education">
+                            <div class="vid-play-btn"><i data-lucide="play"></i></div>
                         </div>
                         <div class="project-info">
                             <div class="project-tags">
@@ -370,6 +368,41 @@
                             </div>
                             <h3 class="project-card-title">Women's Education</h3>
                             <p class="project-card-desc">This educational video highlights the history of women's education and its remarkable progress throughout the years.</p>
+                            <button class="cert-view-btn vid-watch-btn" data-video="assets/GEELECT.mp4" data-title="Women's Education">Watch Video</button>
+                        </div>
+                    </div>
+
+                    <!-- Radix Sort Algorithm Video -->
+                    <div class="project-card" data-category="video">
+                        <div class="project-video-thumb" style="--vid-color-a: #f472b6; --vid-color-b: #fb923c;"
+                            data-video="assets/radix sort.mp4" data-title="Radix Sort Algorithm">
+                            <div class="vid-play-btn"><i data-lucide="play"></i></div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span class="project-tag-pill">Video</span>
+                                <span class="project-tag-pill">Educational</span>
+                            </div>
+                            <h3 class="project-card-title">Radix Sort Algorithm</h3>
+                            <p class="project-card-desc">This educational video explains the concept and process of the Radix Sort algorithm. It provides a step-by-step demonstration of how data is sorted by processing individual digits from the least significant digit to the most significant digit.</p>
+                            <button class="cert-view-btn vid-watch-btn" data-video="assets/radix sort.mp4" data-title="Radix Sort Algorithm">Watch Video</button>
+                        </div>
+                    </div>
+
+                    <!-- Shell Sort Algorithm Video -->
+                    <div class="project-card" data-category="video">
+                        <div class="project-video-thumb" style="--vid-color-a: #34d399; --vid-color-b: #06b6d4;"
+                            data-video="assets/shell sort.mp4" data-title="Shell Sort Algorithm">
+                            <div class="vid-play-btn"><i data-lucide="play"></i></div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span class="project-tag-pill">Video</span>
+                                <span class="project-tag-pill">Educational</span>
+                            </div>
+                            <h3 class="project-card-title">Shell Sort Algorithm</h3>
+                            <p class="project-card-desc">This educational video demonstrates how the Shell Sort algorithm works by explaining its sorting process in a simple and easy-to-understand manner. The video shows how elements are compared and sorted using decreasing gap intervals, allowing data to move closer to its correct position before the final insertion sort pass.</p>
+                            <button class="cert-view-btn vid-watch-btn" data-video="assets/shell sort.mp4" data-title="Shell Sort Algorithm">Watch Video</button>
                         </div>
                     </div>
 
@@ -534,7 +567,7 @@
             </div>
         </section>
 
-        <!-- Lightbox -->
+        <!-- Lightbox (image) -->
         <div class="lightbox" id="lightbox">
             <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
             <div class="lightbox-content">
@@ -545,6 +578,22 @@
                 <div class="lightbox-caption">
                     <h4 id="lightbox-title"></h4>
                     <p id="lightbox-desc"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Lightbox -->
+        <div class="lightbox" id="video-lightbox">
+            <div class="lightbox-backdrop" id="video-lightbox-backdrop"></div>
+            <div class="lightbox-content video-lightbox-content">
+                <button class="lightbox-close" id="video-lightbox-close" aria-label="Close">
+                    <i data-lucide="x"></i>
+                </button>
+                <video id="lightbox-video" class="lightbox-video" controls>
+                    <source src="" type="video/mp4">
+                </video>
+                <div class="lightbox-caption">
+                    <h4 id="video-lightbox-title"></h4>
                 </div>
             </div>
         </div>
@@ -636,7 +685,7 @@
     <!-- Script -->
     <script src="script.js"></script>
     <script>
-        // Certificate Lightbox
+        // ── Image Lightbox ──────────────────────────────────────────
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxTitle = document.getElementById('lightbox-title');
@@ -648,19 +697,11 @@
             lightboxImg.src = src;
             lightboxImg.alt = title;
             lightboxTitle.textContent = title;
-            lightboxDesc.textContent = desc;
+            lightboxDesc.textContent = desc || '';
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
             lucide.createIcons();
         }
-
-        document.querySelectorAll('.cert-view-btn').forEach(btn => {
-            btn.addEventListener('click', () => openLightbox(btn.dataset.src, btn.dataset.title, btn.dataset.desc));
-        });
-
-        document.querySelectorAll('.proj-lightbox-btn').forEach(btn => {
-            btn.addEventListener('click', () => openLightbox(btn.dataset.src, btn.dataset.title, btn.dataset.desc));
-        });
 
         function closeLightbox() {
             lightbox.classList.remove('active');
@@ -669,7 +710,57 @@
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightboxBackdrop.addEventListener('click', closeLightbox);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        // Cert view buttons (images only)
+        document.querySelectorAll('.cert-view-btn').forEach(btn => {
+            btn.addEventListener('click', () => openLightbox(btn.dataset.src, btn.dataset.title, btn.dataset.desc));
+        });
+
+        // Poster fullscreen buttons
+        document.querySelectorAll('.proj-lightbox-btn').forEach(btn => {
+            btn.addEventListener('click', () => openLightbox(btn.dataset.src, btn.dataset.title, btn.dataset.desc));
+        });
+
+        // ── Video Lightbox ───────────────────────────────────────────
+        const videoLightbox = document.getElementById('video-lightbox');
+        const lightboxVideo = document.getElementById('lightbox-video');
+        const videoLightboxTitle = document.getElementById('video-lightbox-title');
+        const videoLightboxClose = document.getElementById('video-lightbox-close');
+        const videoLightboxBackdrop = document.getElementById('video-lightbox-backdrop');
+
+        function openVideoLightbox(src, title) {
+            lightboxVideo.querySelector('source').src = src;
+            lightboxVideo.load();
+            videoLightboxTitle.textContent = title;
+            videoLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lucide.createIcons();
+        }
+
+        function closeVideoLightbox() {
+            videoLightbox.classList.remove('active');
+            lightboxVideo.pause();
+            lightboxVideo.querySelector('source').src = '';
+            document.body.style.overflow = '';
+        }
+
+        // Thumbnail click
+        document.querySelectorAll('.project-video-thumb').forEach(el => {
+            el.addEventListener('click', () => openVideoLightbox(el.dataset.video, el.dataset.title));
+        });
+
+        // Watch Video button
+        document.querySelectorAll('.vid-watch-btn').forEach(btn => {
+            btn.addEventListener('click', () => openVideoLightbox(btn.dataset.video, btn.dataset.title));
+        });
+
+        videoLightboxClose.addEventListener('click', closeVideoLightbox);
+        videoLightboxBackdrop.addEventListener('click', closeVideoLightbox);
+
+        // Escape key closes both
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { closeLightbox(); closeVideoLightbox(); }
+        });
     </script>
 </body>
 

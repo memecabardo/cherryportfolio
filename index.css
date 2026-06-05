@@ -785,6 +785,25 @@ body.light-theme .moon-icon { display: none; }
 }
 .cert-card:hover .cert-img { transform: scale(1.05); }
 
+.cert-info {
+    padding: 14px 16px 16px;
+    border-top: 1px solid var(--border);
+}
+.cert-title {
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+.cert-desc {
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
 /* ==========================================================================
    Contact Section
    ========================================================================== */

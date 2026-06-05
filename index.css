@@ -744,6 +744,27 @@ body.light-theme .moon-icon { display: none; }
     overflow: hidden;
     background: var(--border);
 }
+
+/* Multi-image brochure cards — show back on hover */
+.project-multi-img { cursor: pointer; }
+.project-multi-img .project-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: opacity 0.5s ease, transform 0.5s ease; }
+.project-multi-img .project-img-back { opacity: 0; }
+.project-multi-img:hover .project-img:first-child { opacity: 0; }
+.project-multi-img:hover .project-img-back { opacity: 1; }
+
+/* Video container */
+.project-video-container {
+    width: 100%;
+    background: #000;
+    border-radius: var(--radius) var(--radius) 0 0;
+    overflow: hidden;
+}
+.project-video {
+    width: 100%;
+    display: block;
+    max-height: 260px;
+    object-fit: cover;
+}
 .project-img {
     width: 100%; height: 100%;
     object-fit: cover;

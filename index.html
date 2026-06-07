@@ -268,14 +268,32 @@
                     <button class="filter-btn" data-filter="brochure">Brochure</button>
                     <button class="filter-btn" data-filter="poster">Poster</button>
                     <button class="filter-btn" data-filter="video">Video</button>
+                    <button class="filter-btn" data-filter="campaign">Campaign</button>
                 </div>
                 <div class="projects-grid">
 
                     <!-- ALCESS Brochure -->
                     <div class="project-card" data-category="brochure">
-                        <div class="project-image-container project-multi-img">
+                        <div class="project-image-container">
                             <img src="assets/b1.png" alt="ALCESS Brochure Front" class="project-img">
-                            <img src="assets/b1.2.png" alt="ALCESS Brochure Back" class="project-img project-img-back">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <button class="project-link-icon proj-lightbox-btn"
+                                        data-src="assets/b1.png"
+                                        data-title="ALCESS Brochure — Front"
+                                        data-desc="Tri-fold brochure for the ALCESS system"
+                                        aria-label="View front">
+                                        <i data-lucide="eye"></i>
+                                    </button>
+                                    <button class="project-link-icon proj-lightbox-btn"
+                                        data-src="assets/b1.2.png"
+                                        data-title="ALCESS Brochure — Back"
+                                        data-desc="Tri-fold brochure for the ALCESS system"
+                                        aria-label="View back">
+                                        <i data-lucide="flip-horizontal-2"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="project-info">
                             <div class="project-tags">
@@ -289,9 +307,26 @@
 
                     <!-- Lifeline Brochure -->
                     <div class="project-card" data-category="brochure">
-                        <div class="project-image-container project-multi-img">
+                        <div class="project-image-container">
                             <img src="assets/b2.1.png" alt="Lifeline Brochure Front" class="project-img">
-                            <img src="assets/b2.2.png" alt="Lifeline Brochure Back" class="project-img project-img-back">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <button class="project-link-icon proj-lightbox-btn"
+                                        data-src="assets/b2.1.png"
+                                        data-title="Lifeline Brochure — Front"
+                                        data-desc="Professional brochure for the Lifeline system"
+                                        aria-label="View front">
+                                        <i data-lucide="eye"></i>
+                                    </button>
+                                    <button class="project-link-icon proj-lightbox-btn"
+                                        data-src="assets/b2.2.png"
+                                        data-title="Lifeline Brochure — Back"
+                                        data-desc="Professional brochure for the Lifeline system"
+                                        aria-label="View back">
+                                        <i data-lucide="flip-horizontal-2"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div class="project-info">
                             <div class="project-tags">
@@ -352,6 +387,40 @@
                             </div>
                             <h3 class="project-card-title">Lifeline Poster</h3>
                             <p class="project-card-desc">The Lifeline poster was designed to raise awareness and effectively communicate the importance of accessible and reliable emergency assistance services.</p>
+                        </div>
+                    </div>
+
+                    <!-- Mental Health Awareness -->
+                    <div class="project-card" data-category="campaign">
+                        <div class="project-image-container">
+                            <img src="assets/tp1.png" alt="Mental Health Awareness" class="project-img proj-slideshow-img"
+                                data-slides='["assets/tp1.png","assets/tp2.png","assets/tp3.png","assets/tp4.png"]'
+                                data-slide-index="0">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <button class="project-link-icon proj-lightbox-btn"
+                                        data-src="assets/tp1.png"
+                                        data-title="Mental Health Awareness"
+                                        data-desc="Awareness campaign materials for mental health"
+                                        aria-label="View image">
+                                        <i data-lucide="maximize-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="slide-dots">
+                                <span class="slide-dot active" data-idx="0"></span>
+                                <span class="slide-dot" data-idx="1"></span>
+                                <span class="slide-dot" data-idx="2"></span>
+                                <span class="slide-dot" data-idx="3"></span>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-tags">
+                                <span class="project-tag-pill">Campaign</span>
+                                <span class="project-tag-pill">Graphic Design</span>
+                            </div>
+                            <h3 class="project-card-title">Mental Health Awareness</h3>
+                            <p class="project-card-desc">A series of awareness campaign materials designed to promote mental health education, reduce stigma, and encourage people to seek help and support.</p>
                         </div>
                     </div>
 
@@ -563,6 +632,20 @@
                         </div>
                     </div>
 
+                    <!-- Best Pitching Award -->
+                    <div class="cert-card">
+                        <div class="cert-image-wrapper cert-multi-img">
+                            <img src="assets/life1.jpg" alt="Best Pitching Award" class="cert-img">
+                            <img src="assets/life2.jpg" alt="Best Pitching Award Photo" class="cert-img cert-img-back">
+                        </div>
+                        <div class="cert-info">
+                            <h4 class="cert-title">Startup Sundayag Pitch Festival</h4>
+                            <p class="cert-achievement">Best Pitching Award</p>
+                            <p class="cert-desc">Outstanding Pitching Performance</p>
+                            <button class="cert-view-btn" data-src="assets/life1.jpg" data-title="Best Pitching Award" data-desc="Startup Sundayag Pitch Festival — Best Pitching Award">View Certificate</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -719,6 +802,31 @@
         // Poster fullscreen buttons
         document.querySelectorAll('.proj-lightbox-btn').forEach(btn => {
             btn.addEventListener('click', () => openLightbox(btn.dataset.src, btn.dataset.title, btn.dataset.desc));
+        });
+
+        // Auto-slideshow for mental health campaign card
+        document.querySelectorAll('.proj-slideshow-img').forEach(img => {
+            const slides = JSON.parse(img.dataset.slides);
+            const card = img.closest('.project-image-container');
+            const dots = card.querySelectorAll('.slide-dot');
+            let idx = 0;
+            setInterval(() => {
+                idx = (idx + 1) % slides.length;
+                img.src = slides[idx];
+                // update lightbox btn src too
+                const lb = card.querySelector('.proj-lightbox-btn');
+                if (lb) lb.dataset.src = slides[idx];
+                dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+            }, 2500);
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    idx = parseInt(dot.dataset.idx);
+                    img.src = slides[idx];
+                    const lb = card.querySelector('.proj-lightbox-btn');
+                    if (lb) lb.dataset.src = slides[idx];
+                    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+                });
+            });
         });
 
         // ── Video Lightbox ───────────────────────────────────────────

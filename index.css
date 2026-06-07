@@ -745,12 +745,28 @@ body.light-theme .moon-icon { display: none; }
     background: var(--border);
 }
 
-/* Multi-image brochure cards — show back on hover */
-.project-multi-img { cursor: pointer; }
-.project-multi-img .project-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: opacity 0.5s ease, transform 0.5s ease; }
-.project-multi-img .project-img-back { opacity: 0; }
-.project-multi-img:hover .project-img:first-child { opacity: 0; }
-.project-multi-img:hover .project-img-back { opacity: 1; }
+/* Multi-image brochure cards — removed flip, now uses lightbox buttons */
+
+/* Slideshow dots */
+.slide-dots {
+    position: absolute; bottom: 10px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 2;
+}
+.slide-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    cursor: pointer; transition: var(--transition);
+    border: none;
+}
+.slide-dot.active { background: #fff; transform: scale(1.2); }
+
+/* Cert multi-image (hover flip) */
+.cert-multi-img { position: relative; overflow: hidden; }
+.cert-multi-img .cert-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s ease; }
+.cert-multi-img .cert-img-back { opacity: 0; }
+.cert-card:hover .cert-multi-img .cert-img:first-child { opacity: 0; }
+.cert-card:hover .cert-multi-img .cert-img-back { opacity: 1; }
 
 /* Video thumbnail card */
 .project-video-thumb {

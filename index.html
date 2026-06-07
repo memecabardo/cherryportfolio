@@ -394,7 +394,7 @@
                     <!-- Mental Health Awareness -->
                     <div class="project-card" data-category="campaign">
                         <div class="project-video-thumb" style="--vid-color-a: #f472b6; --vid-color-b: #818cf8;"
-                            data-video="assets/mental health.mov" data-title="Mental Health Awareness">
+                            data-gdrive="1uSq5N8-L6ABipcrYwKDjNa_yU2XY4nVg" data-title="Mental Health Awareness">
                             <div class="vid-play-btn"><i data-lucide="play"></i></div>
                         </div>
                         <div class="project-info">
@@ -404,7 +404,7 @@
                             </div>
                             <h3 class="project-card-title">Mental Health Awareness</h3>
                             <p class="project-card-desc">A series of awareness campaign materials designed to promote mental health education, reduce stigma, and encourage people to seek help and support.</p>
-                            <button class="cert-view-btn vid-watch-btn" data-video="assets/mental health.mov" data-title="Mental Health Awareness">Watch Video</button>
+                            <button class="cert-view-btn vid-watch-btn" data-gdrive="1uSq5N8-L6ABipcrYwKDjNa_yU2XY4nVg" data-title="Mental Health Awareness">Watch Video</button>
                         </div>
                     </div>
 
@@ -731,6 +731,7 @@
                     <source src="" type="video/mp4">
                     <source src="" type="video/quicktime">
                 </video>
+                <iframe id="lightbox-gdrive" class="lightbox-video lightbox-iframe" src="" frameborder="0" allow="autoplay" allowfullscreen style="display:none;"></iframe>
                 <div class="lightbox-caption">
                     <h4 id="video-lightbox-title"></h4>
                 </div>
@@ -888,14 +889,26 @@
         // ── Video Lightbox ───────────────────────────────────────────
         const videoLightbox = document.getElementById('video-lightbox');
         const lightboxVideo = document.getElementById('lightbox-video');
+        const lightboxGdrive = document.getElementById('lightbox-gdrive');
         const videoLightboxTitle = document.getElementById('video-lightbox-title');
         const videoLightboxClose = document.getElementById('video-lightbox-close');
         const videoLightboxBackdrop = document.getElementById('video-lightbox-backdrop');
 
-        function openVideoLightbox(src, title) {
-            const sources = lightboxVideo.querySelectorAll('source');
-            sources.forEach(s => s.src = src);
-            lightboxVideo.load();
+        function openVideoLightbox(src, title, gdriveId) {
+            if (gdriveId) {
+                // Google Drive embed
+                lightboxVideo.style.display = 'none';
+                lightboxGdrive.style.display = 'block';
+                lightboxGdrive.src = `https://drive.google.com/file/d/${gdriveId}/preview`;
+            } else {
+                // Local video
+                lightboxGdrive.style.display = 'none';
+                lightboxGdrive.src = '';
+                lightboxVideo.style.display = 'block';
+                const sources = lightboxVideo.querySelectorAll('source');
+                sources.forEach(s => s.src = src);
+                lightboxVideo.load();
+            }
             videoLightboxTitle.textContent = title;
             videoLightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -905,18 +918,19 @@
         function closeVideoLightbox() {
             videoLightbox.classList.remove('active');
             lightboxVideo.pause();
-            lightboxVideo.querySelector('source').src = '';
+            lightboxVideo.querySelectorAll('source').forEach(s => s.src = '');
+            lightboxGdrive.src = '';
             document.body.style.overflow = '';
         }
 
         // Thumbnail click
         document.querySelectorAll('.project-video-thumb').forEach(el => {
-            el.addEventListener('click', () => openVideoLightbox(el.dataset.video, el.dataset.title));
+            el.addEventListener('click', () => openVideoLightbox(el.dataset.video, el.dataset.title, el.dataset.gdrive));
         });
 
         // Watch Video button
         document.querySelectorAll('.vid-watch-btn').forEach(btn => {
-            btn.addEventListener('click', () => openVideoLightbox(btn.dataset.video, btn.dataset.title));
+            btn.addEventListener('click', () => openVideoLightbox(btn.dataset.video, btn.dataset.title, btn.dataset.gdrive));
         });
 
         videoLightboxClose.addEventListener('click', closeVideoLightbox);

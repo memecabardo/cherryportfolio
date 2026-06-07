@@ -799,6 +799,11 @@ body.light-theme .moon-icon { display: none; }
     background: #000;
     max-height: 72vh;
 }
+.lightbox-iframe {
+    width: 100%;
+    height: 72vh;
+    background: #000;
+}
 .project-img {
     width: 100%; height: 100%;
     object-fit: cover;

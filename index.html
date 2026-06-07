@@ -393,35 +393,18 @@
 
                     <!-- Mental Health Awareness -->
                     <div class="project-card" data-category="campaign">
-                        <div class="project-image-container">
-                            <img src="assets/tp1.png" alt="Mental Health Awareness" class="project-img proj-slideshow-img"
-                                data-slides='["assets/tp1.png","assets/tp2.png","assets/tp3.png","assets/tp4.png"]'
-                                data-slide-index="0">
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <button class="project-link-icon proj-lightbox-btn"
-                                        data-src="assets/tp1.png"
-                                        data-title="Mental Health Awareness"
-                                        data-desc="Awareness campaign materials for mental health"
-                                        aria-label="View image">
-                                        <i data-lucide="maximize-2"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="slide-dots">
-                                <span class="slide-dot active" data-idx="0"></span>
-                                <span class="slide-dot" data-idx="1"></span>
-                                <span class="slide-dot" data-idx="2"></span>
-                                <span class="slide-dot" data-idx="3"></span>
-                            </div>
+                        <div class="project-video-thumb" style="--vid-color-a: #f472b6; --vid-color-b: #818cf8;"
+                            data-video="assets/mental health.mov" data-title="Mental Health Awareness">
+                            <div class="vid-play-btn"><i data-lucide="play"></i></div>
                         </div>
                         <div class="project-info">
                             <div class="project-tags">
                                 <span class="project-tag-pill">Campaign</span>
-                                <span class="project-tag-pill">Graphic Design</span>
+                                <span class="project-tag-pill">Video</span>
                             </div>
                             <h3 class="project-card-title">Mental Health Awareness</h3>
                             <p class="project-card-desc">A series of awareness campaign materials designed to promote mental health education, reduce stigma, and encourage people to seek help and support.</p>
+                            <button class="cert-view-btn vid-watch-btn" data-video="assets/mental health.mov" data-title="Mental Health Awareness">Watch Video</button>
                         </div>
                     </div>
 
@@ -746,6 +729,7 @@
                 </button>
                 <video id="lightbox-video" class="lightbox-video" controls>
                     <source src="" type="video/mp4">
+                    <source src="" type="video/quicktime">
                 </video>
                 <div class="lightbox-caption">
                     <h4 id="video-lightbox-title"></h4>
@@ -909,7 +893,8 @@
         const videoLightboxBackdrop = document.getElementById('video-lightbox-backdrop');
 
         function openVideoLightbox(src, title) {
-            lightboxVideo.querySelector('source').src = src;
+            const sources = lightboxVideo.querySelectorAll('source');
+            sources.forEach(s => s.src = src);
             lightboxVideo.load();
             videoLightboxTitle.textContent = title;
             videoLightbox.classList.add('active');
